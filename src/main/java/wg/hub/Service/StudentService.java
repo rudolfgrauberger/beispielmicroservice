@@ -13,11 +13,16 @@ public class StudentService {
     @Autowired
     private StudentDao studentDao;
 
+
     public Collection<Student> getAllStudents() {
         return studentDao.getAllStudents();
     }
 
     public Student getStudentById(int id) {
         return studentDao.getStudentById(id);
+    }
+
+    public void deleteStudentById(int id) {
+        studentDao.deleteStudentById(id);
     }
 }
