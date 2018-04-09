@@ -34,4 +34,11 @@ public class StudentDao {
         students.remove(id);
     }
 
+    public void updateStudent(Student student){
+
+
+
+        students.put(student.getId(), student);
+    }
+
 }
