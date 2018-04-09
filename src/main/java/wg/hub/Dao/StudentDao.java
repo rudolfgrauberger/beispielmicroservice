@@ -1,47 +1,17 @@
 package wg.hub.Dao;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.stereotype.Repository;
 import wg.hub.Entity.Student;
 
-@Repository
-public class StudentDao {
+import java.util.Collection;
 
-    private static Map<Integer, Student> students;
+public interface StudentDao {
+    Collection<Student> getAllStudents();
 
-    static {
-        students = new HashMap<Integer, Student>(){
-            {
-                put(1, new Student(1, "Timo", "Informatics"));
-                put(2, new Student(2, "Henrik", "Mathe"));
-                put(3, new Student(3, "Lennart", "EE"));
-            }
-        };
-    }
+    Student getStudentById(int id);
 
-    public Collection<Student> getAllStudents() {
-        return students.values();
-    }
+    void deleteStudentById(int id);
 
-    public Student getStudentById(int id) {
-        return students.get(id);
-    }
+    void updateStudent(Student student);
 
-    public void deleteStudentById(int id) {
-        students.remove(id);
-    }
-
-    public void updateStudent(Student student){
-
-
-
-        students.put(student.getId(), student);
-    }
-
-    public void insertStudent(Student student) {
-        students.put(student.getId(), student);
-    }
+    void insertStudent(Student student);
 }
