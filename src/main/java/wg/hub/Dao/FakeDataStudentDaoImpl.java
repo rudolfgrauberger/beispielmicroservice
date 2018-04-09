@@ -4,10 +4,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import wg.hub.Entity.Student;
 
 @Repository
+@Qualifier("fakeData")
 public class FakeDataStudentDaoImpl implements StudentDao {
 
     private static Map<Integer, Student> students;
