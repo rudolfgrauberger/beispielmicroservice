@@ -2,7 +2,7 @@ package wg.hub.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wg.hub.Dao.StudentDao;
+import wg.hub.Dao.FakeDataStudentDaoImpl;
 import wg.hub.Entity.Student;
 
 import java.util.Collection;
@@ -11,7 +11,7 @@ import java.util.Collection;
 public class StudentService {
 
     @Autowired
-    private StudentDao studentDao;
+    private FakeDataStudentDaoImpl studentDao;
 
 
     public Collection<Student> getAllStudents() {

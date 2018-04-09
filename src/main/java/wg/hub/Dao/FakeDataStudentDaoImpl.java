@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import wg.hub.Entity.Student;
 
 @Repository
-public class StudentDaoImpl implements StudentDao {
+public class FakeDataStudentDaoImpl implements StudentDao {
 
     private static Map<Integer, Student> students;
 
