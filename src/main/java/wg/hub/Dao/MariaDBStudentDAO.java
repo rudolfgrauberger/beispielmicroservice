@@ -21,14 +21,14 @@ public class MariaDBStudentDAO implements StudentDao {
     @Override
     public Collection<Student> getAllStudents() {
 
-        final String sql = "SELECT id, 'name', course FROM Students";
+        final String sql = "SELECT id, name, course FROM Students";
         List<Student> students = jdbcTemplate.query(sql, new RowMapper<Student>() {
             @Override
             public Student mapRow(ResultSet resultSet, int i) throws SQLException {
                 Student student = new Student();
                 student.setId(resultSet.getInt("id"));
                 student.setName(resultSet.getString("name"));
-                student.setName(resultSet.getString("course"));
+                student.setCourse(resultSet.getString("course"));
                 return student;
             }
         });
