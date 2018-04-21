@@ -56,16 +56,22 @@ public class MariaDBStudentDAO implements StudentDao {
     @Override
     public void updateStudent(Student student) {
 
-        final String sql = "UPDATE name = ?, course = ? WHERE id = ?";
+        final String sql = "UPDATE students SET name = ?, course = ? WHERE id = ?";
         final int id = student.getId();
         final String name = student.getName();
         final String course = student.getCourse();
 
-        jdbcTemplate.update(sql, new Object[]{id, name, course});
+        jdbcTemplate.update(sql, new Object[]{name, course, id});
     }
 
     @Override
     public void insertStudent(Student student) {
+
+        final String sql = "INSERT INTO students (id, name, course) VALUES (?, ?, ?)";
+        final int id = student.getId();
+        final String name = student.getName();
+        final String course = student.getCourse();
+        jdbcTemplate.update(sql, new Object[]{id, name, course});
 
     }
 }
