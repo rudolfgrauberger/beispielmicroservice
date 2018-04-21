@@ -48,6 +48,9 @@ public class MariaDBStudentDAO implements StudentDao {
     @Override
     public void deleteStudentById(int id) {
 
+        final String sql = "DELETE FROM students WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+
     }
 
     @Override
