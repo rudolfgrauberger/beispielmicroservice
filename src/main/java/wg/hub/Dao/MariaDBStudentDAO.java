@@ -56,6 +56,12 @@ public class MariaDBStudentDAO implements StudentDao {
     @Override
     public void updateStudent(Student student) {
 
+        final String sql = "UPDATE name = ?, course = ? WHERE id = ?";
+        final int id = student.getId();
+        final String name = student.getName();
+        final String course = student.getCourse();
+
+        jdbcTemplate.update(sql, new Object[]{id, name, course});
     }
 
     @Override
