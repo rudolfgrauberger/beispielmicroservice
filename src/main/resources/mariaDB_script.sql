@@ -12,7 +12,7 @@ CREATE USER 'sb_dev'@'localhost' identified BY 'knet-lol';
 CREATE USER 'sb_prod'@'localhost' identified BY 'knet-lol';
 
 GRANT ALL ON sb_dev.* TO 'sb_dev'@'localhost';
-GRANT ALL ON sb_dev.* TO 'sb_prod'@'localhost';
+GRANT ALL ON sb_prod.* TO 'sb_prod'@'localhost';
 
 USE sb_dev;
 
