@@ -65,11 +65,10 @@ public class MariaDBStudentDAO implements StudentDao {
 
     @Override
     public void insertStudent(Student student) {
-        final String sql = "INSERT INTO students (id, name, course) VALUES (?, ?, ?)";
-        final int id = student.getId();
+        final String sql = "INSERT INTO students (name, course) VALUES (?, ?)";
         final String name = student.getName();
         final String course = student.getCourse();
 
-        jdbcTemplate.update(sql, new Object[]{id, name, course});
+        jdbcTemplate.update(sql, new Object[]{name, course});
     }
 }
