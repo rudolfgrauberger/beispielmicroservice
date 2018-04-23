@@ -18,8 +18,6 @@ public class MariaDBStudentDAO implements StudentDao {
     private JdbcTemplate jdbcTemplate;
 
     private static class StudentRowMapper implements RowMapper<Student>{
-
-
         @Override
         public Student mapRow(ResultSet resultSet, int i) throws SQLException {
             Student student = new Student();
@@ -29,33 +27,34 @@ public class MariaDBStudentDAO implements StudentDao {
             return student;
         }
     }
+
     @Override
     public Collection<Student> getAllStudents() {
 
         final String sql = "SELECT id, name, course FROM Students";
+
         List<Student> students = jdbcTemplate.query(sql, new StudentRowMapper());
         return students;
     }
 
     @Override
     public Student getStudentById(int id) {
-
         final String sql = "SELECT id, name, course FROM Students WHERE id = ?";
+
         Student student = jdbcTemplate.queryForObject(sql, new StudentRowMapper(), id);
         return student;
     }
 
     @Override
     public void deleteStudentById(int id) {
-
         final String sql = "DELETE FROM students WHERE id = ?";
+
         jdbcTemplate.update(sql, id);
 
     }
 
     @Override
     public void updateStudent(Student student) {
-
         final String sql = "UPDATE students SET name = ?, course = ? WHERE id = ?";
         final int id = student.getId();
         final String name = student.getName();
@@ -66,12 +65,11 @@ public class MariaDBStudentDAO implements StudentDao {
 
     @Override
     public void insertStudent(Student student) {
-
         final String sql = "INSERT INTO students (id, name, course) VALUES (?, ?, ?)";
         final int id = student.getId();
         final String name = student.getName();
         final String course = student.getCourse();
-        jdbcTemplate.update(sql, new Object[]{id, name, course});
 
+        jdbcTemplate.update(sql, new Object[]{id, name, course});
     }
 }
