@@ -25,6 +25,7 @@
             <artifactId>HikariCP</artifactId>
             <version>3.1.0</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
@@ -32,23 +33,17 @@
             <version>2.2.3</version>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>5.0.5.RELEASE</version>
         </dependency>
-
-
     </dependencies>
-
-
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
-
 
     <build>
         <plugins>
