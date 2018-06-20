@@ -1,7 +1,9 @@
 package wg.hub.Controller;
 
 import org.apache.catalina.valves.StuckThreadDetectionValve;
+import org.omg.CORBA.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import wg.hub.Entity.Student;
@@ -16,6 +18,17 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    @Value("${server.port}")
+    private String servicePort;
+
+    @Value("${spring.application.name}")
+    private String appName;
+
+    @RequestMapping(value="/getID", method = RequestMethod.GET)
+    public String getServiceID () {
+        return "This is a Instance of " + appName + " on port: " + servicePort;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public Collection<Student> getAllStudents() {

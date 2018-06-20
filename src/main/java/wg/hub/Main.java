@@ -23,6 +23,7 @@ public class Main {
     }
 }
 
+// ask eureka server for all registered services
 @RestController
 class ServiceInstanceRestController {
 
@@ -33,6 +34,7 @@ class ServiceInstanceRestController {
     public List<ServiceInstance> serviceInstancesByApplicationName(
             @PathVariable String applicationName) {
         return this.discoveryClient.getInstances(applicationName);
+
     }
 }
 
