@@ -27,7 +27,7 @@ public class StudentController {
 
     @RequestMapping(value="/getID", method = RequestMethod.GET)
     public String getServiceID () {
-        return "This is a Instance of " + appName + " on port: " + servicePort;
+        return "This is an instance of " + appName + " on port: " + servicePort;
     }
 
     @RequestMapping(method = RequestMethod.GET)
