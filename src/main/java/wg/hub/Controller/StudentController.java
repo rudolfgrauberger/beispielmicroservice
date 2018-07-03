@@ -41,7 +41,9 @@ public class StudentController {
 
         for (final Student student : students) {
             Link selfLink = linkTo(StudentController.class).slash(student.getStudentId()).withSelfRel();
-            student.add(selfLink);
+
+            if (!student.hasLink(selfLink.getRel()))
+                student.add(selfLink);
         }
 
         Link collectionLink = linkTo(StudentController.class).withSelfRel();
