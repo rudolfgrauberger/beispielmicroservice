@@ -1,7 +1,9 @@
 package wg.hub.Entity;
 
-public class Student {
-    private int id;
+import org.springframework.hateoas.ResourceSupport;
+
+public class Student extends ResourceSupport {
+    private int studentId;
     private String name;
     private String course;
 
@@ -9,14 +11,14 @@ public class Student {
 
     }
 
-    public Student(int id, String name, String course) {
-        this.id = id;
+    public Student(int studentId, String name, String course) {
+        this.studentId = studentId;
         this.name = name;
         this.course = course;
     }
 
-    public int getId() {
-        return id;
+    public int getStudentId() {
+        return studentId;
     }
 
     public String getName() {
@@ -27,8 +29,8 @@ public class Student {
         return course;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
     public void setName(String name) {

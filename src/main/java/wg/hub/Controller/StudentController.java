@@ -4,6 +4,8 @@ import org.apache.catalina.valves.StuckThreadDetectionValve;
 import org.omg.CORBA.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resources;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import wg.hub.Entity.Student;
@@ -11,6 +13,9 @@ import wg.hub.Service.StudentService;
 
 import java.awt.*;
 import java.util.Collection;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/students")
@@ -30,9 +35,18 @@ public class StudentController {
         return "This is an instance of " + appName + " on port: " + servicePort;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Collection<Student> getAllStudents() {
-        return studentService.getAllStudents();
+    @RequestMapping(method = RequestMethod.GET, produces = {"application/hal+json"})
+    public Resources<Student> getAllStudents() {
+        Collection<Student> students = studentService.getAllStudents();
+
+        for (final Student student : students) {
+            Link selfLink = linkTo(StudentController.class).slash(student.getStudentId()).withSelfRel();
+            student.add(selfLink);
+        }
+
+        Link collectionLink = linkTo(StudentController.class).withSelfRel();
+        Resources<Student> result = new Resources<Student>(students, collectionLink);
+        return result;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

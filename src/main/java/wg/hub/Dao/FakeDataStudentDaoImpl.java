@@ -41,11 +41,11 @@ public class FakeDataStudentDaoImpl implements StudentDao {
 
     @Override
     public void updateStudent(Student student){
-        students.put(student.getId(), student);
+        students.put(student.getStudentId(), student);
     }
 
     @Override
     public void insertStudent(Student student) {
-        students.put(student.getId(), student);
+        students.put(student.getStudentId(), student);
     }
 }
