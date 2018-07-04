@@ -5,6 +5,7 @@ import org.omg.CORBA.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -53,7 +54,13 @@ public class StudentController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Student getStudentById(@PathVariable("id") int id) {
-        return studentService.getStudentById(id);
+        Student student = studentService.getStudentById(id);
+        Link selfLink = linkTo(StudentController.class).slash(student.getStudentId()).withSelfRel();
+
+        if (!student.hasLink(selfLink.getRel()))
+            student.add(selfLink);
+
+        return student;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

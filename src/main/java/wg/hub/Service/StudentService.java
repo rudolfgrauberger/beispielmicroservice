@@ -12,7 +12,7 @@ import java.util.Collection;
 public class StudentService {
 
     @Autowired
-    @Qualifier("fakeData")
+    @Qualifier("h2Data")
     private StudentDao studentDao;
 
 

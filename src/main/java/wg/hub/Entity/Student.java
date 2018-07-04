@@ -2,7 +2,15 @@ package wg.hub.Entity;
 
 import org.springframework.hateoas.ResourceSupport;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Student extends ResourceSupport {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int studentId;
     private String name;
     private String course;
